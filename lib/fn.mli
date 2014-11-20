@@ -33,3 +33,19 @@ val compose : ('b -> 'c) -> ('a -> 'b) -> ('a -> 'c)
 
 (** reverse the order of arguments for a binary function *)
 val flip : ('a -> 'b -> 'c) -> ('b -> 'a -> 'c)
+
+(** Transform a function that takes a pair as an argument into
+    a binary function. Inverse of [uncurry]. *)
+val curry : ('a * 'b -> 'c) -> 'a -> 'b -> 'c
+
+(** Transform a binary function into a unary function taking a pair
+    as argument. Inverse of [curry]. *)
+val uncurry : ('a -> 'b -> 'c) -> 'a * 'b -> 'c
+
+(** Transform a function that takes a three-tuple as an argument into
+    a ternary function. Inverse of [uncurry3]. *)
+val curry3 : ('a * 'b * 'c -> 'd) -> 'a -> 'b -> 'c -> 'd
+
+(** Transform a ternary function into a unary function taking a three-tuple
+    as argument. Inverse of [curry3]. *)
+val uncurry3 : ('a -> 'b -> 'c -> 'd) -> 'a * 'b * 'c -> 'd

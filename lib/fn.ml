@@ -35,3 +35,19 @@ let rec apply_n_times ~n f x =
 TEST = 0  = apply_n_times ~n:0 (fun _ -> assert false) 0
 TEST = 0  = apply_n_times ~n:(-3) (fun _ -> assert false) 0
 TEST = 10 = apply_n_times ~n:10 ((+) 1) 0
+
+let curry f = fun a b -> f (a,b)
+
+TEST = (1,2) = curry (fun (a,b) -> (a,b)) 1 2
+
+let uncurry f = fun (a,b) -> f a b
+
+TEST = (1,2) = uncurry (fun a b -> (a,b)) (1,2)
+
+let curry3 f = fun a b c -> f (a,b,c)
+
+TEST = (1,2,3) = curry3 (fun (a,b,c) -> (a,b,c)) 1 2 3
+
+let uncurry3 f = fun (a,b,c) -> f a b c
+
+TEST = (1,2,3) = uncurry3 (fun a b c -> (a,b,c)) (1,2,3)
